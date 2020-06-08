@@ -1,0 +1,19 @@
+set(SOURCES
+enbl_if.hpp
+enl_if.cpp
+)
+
+# создаем статическую библиотеку
+add_library(enable_lib ${SOURCES})
+
+# добавлем путь к исходникам для возожности подключения библиотеки
+target_include_directories(enable_lib PUBLIC ${SRC_ROOT_DIR})
+
+# группируем исходники по типу по категориям
+source_group(TREE ${CMAKE_CURRENT_LIST_DIR} FILES ${SOURCES})
+
+# В solution эта библиотека лежит в simple_project
+set_property(TARGET enable_lib PROPERTY FOLDER "enable_if")
+
+# включаем в сборку проекnа подпроект с тестами
+add_subdirectory(tests)
